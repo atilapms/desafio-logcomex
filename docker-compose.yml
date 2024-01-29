@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  database:
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: employees
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456
+      
+  backend:
+    build: ./backend
+    ports:
+      - "3001:3001"
+    environment:
+      - PG_HOST=database
+      - PG_PORT=5432
+      - PG_DATABASE=employees
+      - PG_USER=postgres
+      - PG_PASSWORD=123456
+    depends_on:
+      - database
+    restart: always
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    restart: always
