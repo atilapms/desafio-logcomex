@@ -23,7 +23,7 @@ cd desafio-logcomex
 ```sh
 docker-compose up --build
 ```
-4. Acesse o browser em no endereço na porta 3000
+4. Acesse o browser no endereço localhost na porta 3000
 ```sh
 localhost:3000
 ```
